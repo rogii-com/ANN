@@ -18,6 +18,8 @@ if(MSVC)
                 "${CMAKE_CURRENT_LIST_DIR}/bin/ANN.lib"
             IMPORTED_IMPLIB_DEBUG
                 "${CMAKE_CURRENT_LIST_DIR}/bin/ANNd.lib"
+            INTERFACE_INCLUDE_DIRECTORIES
+                "${CMAKE_CURRENT_LIST_DIR}/include/"
     )
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     set_target_properties(
@@ -27,13 +29,15 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
                 "${CMAKE_CURRENT_LIST_DIR}/bin/ANN.so"
             IMPORTED_LOCATION_DEBUG
                 "${CMAKE_CURRENT_LIST_DIR}/bin/ANNd.so"
+            INTERFACE_INCLUDE_DIRECTORIES
+                "${CMAKE_CURRENT_LIST_DIR}/include/"
         )
 endif()
 
 set(
     COMPONENT_NAMES
 
-    CNPM_RUNTIME_Gridding_ANN
+    CNPM_RUNTIME_ANN_library
 )
 
 foreach(COMPONENT_NAME ${COMPONENT_NAMES})
@@ -47,19 +51,3 @@ foreach(COMPONENT_NAME ${COMPONENT_NAMES})
         EXCLUDE_FROM_ALL
     )
 endforeach()
-
-foreach(COMPONENT_NAME ${COMPONENT_NAMES})
-    install(
-        FILES
-            $<TARGET_FILE:ANN::library>
-        DESTINATION
-            .
-        COMPONENT
-            ${COMPONENT_NAME}
-        EXCLUDE_FROM_ALL
-    )
-endforeach()
-
-include(
-    "${CMAKE_CURRENT_LIST_DIR}/package_options.cmake"
-)
