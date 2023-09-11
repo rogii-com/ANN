@@ -1,9 +1,9 @@
 if(TARGET ANN::library)
     return()
 endif()
-​
+
 add_library(ANN::library SHARED IMPORTED)
-​
+
 if(MSVC)
     set_target_properties(
         ANN::library
@@ -31,14 +31,14 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
                 "${CMAKE_CURRENT_LIST_DIR}/include/"
         )
 endif()
-​
+
 set(
     COMPONENT_NAMES
-​
+
     CNPM_RUNTIME_ANN_library
     CNPM_RUNTIME
 )
-​
+
 foreach(COMPONENT_NAME ${COMPONENT_NAMES})
     install(
         FILES
