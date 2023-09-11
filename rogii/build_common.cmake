@@ -126,12 +126,19 @@ file(
 )
 
 if(UNIX)
-    execute_process(
-        COMMAND
-            ./utils/split_debug_info.sh ${ROOT}/${PACKAGE_NAME}/bin/ANN.so
-        WORKING_DIRECTORY
-            "${CMAKE_CURRENT_LIST_DIR}"
-    )
+    #strip all shared not symlink libs
+    file(GLOB files "${CMAKE_INSTALL_PREFIX}/bin/*.so*")
+    foreach(file ${files})
+        if(NOT IS_SYMLINK ${file})
+            message(STATUS "strip ${file}")
+            execute_process(
+                COMMAND
+                    bash ${CMAKE_CURRENT_LIST_DIR}/utils/split_debug_info.sh "${file}"
+                WORKING_DIRECTORY
+                    "${CMAKE_INSTALL_PREFIX}/bin/"
+            )
+        endif()
+    endforeach()
 endif()
 
 file(
