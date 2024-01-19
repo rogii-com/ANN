@@ -19,7 +19,7 @@ set(CMAKE_DEBUG_POSTFIX d)
 
 
 add_library(${PROJECT_NAME} SHARED ${srcs_cpp}  ${hdrs})
-set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
+# set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
 # ANN generates many warnings related to the "register" keyword
 # We decided to supress it and make more visible warnings from gridding library
