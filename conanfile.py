@@ -37,8 +37,10 @@ class PkgConanRecipe(ConanFile):
 
     def _split_debug_info(self):
         if self.settings.compiler == "gcc":
+            script_path=f"{self.recipe_folder}/rogii/utils/split_debug_info.sh"
+            self.run(f"chmod u+x {script_path}")
             for path in Path(self.package_folder).rglob('*.so'):
-                self.run(f"bash -c '{self.recipe_folder}/rogii/utils/split_debug_info.sh {path.absolute()}'")
+                self.run(f"bash -c '{script_path} {path.absolute()}'")
 
     def package(self):
         cmake = CMake(self)
