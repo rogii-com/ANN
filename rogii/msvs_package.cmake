@@ -8,5 +8,5 @@ CNPM_ADD_PACKAGE(
     VERSION
         ${MSVS_YEAR_VERSION}.${MSVS_VCTOOLS_VERSION}
     BUILD_NUMBER
-        1
+        0
 )
