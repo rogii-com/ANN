@@ -1,7 +1,7 @@
 import os
 from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake
-from conan.tools.files import copy
+from conan.tools.files import copy, collect_libs
 
 class annRecipe(ConanFile):
     name = "ann"
@@ -31,5 +31,4 @@ class annRecipe(ConanFile):
         self.cpp_info.set_property("cmake_file_name", "ANN")
         self.cpp_info.set_property("cmake_target_name", "ANN::library")
 
-        bt = self.settings.get_safe("build_type")
-        self.cpp_info.libs = ["ANNd" if bt == "Debug" else "ANN"]
+        self.cpp_info.libs = collect_libs(self)
