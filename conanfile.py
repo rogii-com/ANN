@@ -1,6 +1,6 @@
 import os
 from conan import ConanFile
-from conan.tools.cmake import CMakeToolchain, CMake
+from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
 from conan.tools.files import copy, collect_libs
 
 class annRecipe(ConanFile):
@@ -10,6 +10,9 @@ class annRecipe(ConanFile):
 
     settings = "os", "compiler", "build_type", "arch"
     no_copy_source = True
+
+    def layout(self):
+        cmake_layout(self)
 
     def generate(self):
         tc = CMakeToolchain(self)
