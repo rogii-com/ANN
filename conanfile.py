@@ -7,6 +7,7 @@ class annRecipe(ConanFile):
     name = "ann"
     version = "1.1.2"
     package_type = "shared-library"
+    python_requires = "rogii-common/1.0.0"
 
     settings = "os", "compiler", "build_type", "arch"
     no_copy_source = True
@@ -29,6 +30,9 @@ class annRecipe(ConanFile):
 
         local_include_folder = os.path.join(self.source_folder, "include")
         copy(self, "*.h", local_include_folder, os.path.join(self.package_folder, "include"), keep_path=True)
+
+        base = self.python_requires["rogii-common"].module.RogiiBase
+        base.package_debug_info(self)
 
     def package_info(self):
         self.cpp_info.set_property("cmake_file_name", "ANN")
