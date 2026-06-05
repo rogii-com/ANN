@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.15)
 
 project(ANN VERSION 1.1.2 LANGUAGES CXX)
 
+set(CMAKE_DEBUG_POSTFIX d)
+
 file(GLOB_RECURSE srcs_cpp src/*.cpp)
 file(GLOB_RECURSE hdrs src/*.h*)
 
@@ -31,8 +33,6 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
     set(CMAKE_INSTALL_RPATH "$ORIGIN/")
 endif()
-
-set(CMAKE_DEBUG_POSTFIX d)
 
 install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION bin
