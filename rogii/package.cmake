@@ -24,9 +24,9 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         ANN::library
         PROPERTIES
             IMPORTED_LOCATION
-                "${CMAKE_CURRENT_LIST_DIR}/bin/ANN.so"
+                "${CMAKE_CURRENT_LIST_DIR}/bin/libANN.so"
             IMPORTED_LOCATION_DEBUG
-                "${CMAKE_CURRENT_LIST_DIR}/bin/ANNd.so"
+                "${CMAKE_CURRENT_LIST_DIR}/bin/libANNd.so"
             INTERFACE_INCLUDE_DIRECTORIES
                 "${CMAKE_CURRENT_LIST_DIR}/include/"
         )
